@@ -4,6 +4,11 @@
     <meta charset="utf-8">
     <title>Virtual Vehicle Inspection</title>
     <link rel="stylesheet" type="text/css" href="vvi.css">
+    <script src="TemplateData/UnityProgress.js"></script>
+    <script src="Build/UnityLoader.js"></script>
+    <script>
+      var unityInstance = UnityLoader.instantiate("unityContainer", "Build/Debug.json", {onProgress: UnityProgress});
+    </script>
   </head>
   <body>
 
@@ -13,6 +18,13 @@
       <li><a href="../Doc/doc.html">Documentation</a></li>
     </ul>
 
-
+    <div class="webgl-content">
+      <div id="unityContainer" style="width: 960px; height: 600px"></div>
+      <div class="footer">
+        <div class="webgl-logo"></div>
+        <div class="fullscreen" onclick="unityInstance.SetFullscreen(1)"></div>
+        <div class="title">VVI</div>
+      </div>
+    </div>
   </body>
 </html>
