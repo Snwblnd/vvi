@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Virtual Vehicle Inspection</title>
+    <link rel="stylesheet" type="text/css" href="doc.css">
+  </head>
+  <body>
+
+    <ul class="nav">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../vvi/vvi.html">VVI</a></li>
+      <li><a href="doc.html">Documentation</a></li>
+    </ul>
+
+    <div class="Headline">
+      <div style="margin-left: 5%;display: inline-block;width:5px; height:30px; border:none; background-color:red;"></div>
+      <h1>Documentation</h1>
+    </div>
+
+
+    <div class="main">
+      The documentation as requested in the challenge can be downloaded <a href="">here</a><br>
+      Codebase along with Version Control can be found on my <a href="https://www.github.com/Snwblnd/vvi">Github Page</a>
+
+      <h2>Picking an organization</h2>
+
+      <p>
+        Finding an organization with a problem is not really difficult
+        in times like these. The real difficulty was finding one
+        where I could provide a feasable solution. Since I am part
+        of a community I decided to take a look there first, our local
+        fire department. To answer the question as to why I picked this
+        organization over others: I live in a rural area, and there
+        are so few organizations in our vicinity, and after considering
+        which ones I actually could help I chose the one where I was a
+        part of and could understand the problem from my own perspective.
+      </p>
+
+      <h2>Identifying the problem</h2>
+
+      <p>
+        I identified current problems by simply listening. During one
+        of our meetings, some trainees complained about not having
+        enough time to prepare for their exam to become a fire fighter.
+        At first I suggested to develop an e-learning platform, but a
+        solution like that already exists (Moodle e.g.), and our F.D.
+        was already working on an implementation. After practice I
+        noticed that I never really knew where any of our tools where.
+        This is where I was sure that a generic solution like Moodle
+        didn't already exist, and even if it did, it was difficult
+        to implement due to the complexicity of our vehicles.
+      </p>
+
+      <h2>Developing an approach</h2>
+
+      <p>
+        This step was a little tougher. I considered many ways to help
+        someone memorize positions of tools in our vehicles. This went
+        from
+
+        <ul>
+          <li>Taking pictures of the tools and pointing with an arrow to the position in the vehicle</li>
+          <li>Creating some sort of minigame, where the user has to drag images in a table of which shutter the tool is located in</li>
+          <li>Just a list of tools, what they are used for, and where they're located.</li>
+        </ul>
+
+      No solution satisfied me, as it required taking tons of
+      pictures, and gets difficult to implement as sometimes a tool
+      can be in multiple locations, or is behind some layer that is
+      easy to spot in an image with an arrow pointing to it, but
+      difficult to find in reality.
+
+      </p>
+      <p>
+        I ended up deciding to try to make it an interactive
+        experience. I knew beforehand that this would require the most
+        amount of work, but I wouldn't have done this if I wasn't
+        convinced that this would help someone like me remember tools
+        positions the best. My first step was preparations. I needed
+        to learn 3D modelling. Luckily I had a friend who showed me the
+        basics in Fusion3D. Despite how basic my vehicle looks, and
+        how few of the tools I actually made, this step was the most
+        time-consuming. It took several attempts to get a result
+        that was even useable. Next step was to decide on a platform.
+        <br>I considered the following:
+        <ul>
+          <li>Mobile</li>
+          <li>Desktop Application</li>
+          <li>Website</li>
+        </ul>
+        Almost everyone has a phone. The problems with phones however
+        were the screen size, I was unsure of how I would create an
+        UI that had enough space for text, without being too small
+        and not covering up the vehicle, and controls/gestures seemed
+        to be very complicated to implement.
+        <br>
+        A desktop application seemed like a good idea at first, but
+        since some trainees are very unfamiliar with computers, I
+        decided it'd be best to not develop something that would have
+        to be downloaded first and installed.
+        <br>
+        The last idea was a website. This seemed like a good idea,
+        because it works with the majority of operating systems and
+        browsers, is lightweight and easy to access. The last step was
+        to figure out how I could create an interactive experience
+        within a website. After looking into the topic a bit further,
+        I found out that WebGL would be able to handle the job. My
+        idea was to create all of this in a game engine that could
+        work with WebGL. While both Unity and Unreal Engine are capable
+        of this, I went with Unity because It seemed easier to learn at
+        first. Unity was able to import my 3D Model with all of its
+        subcomponents without an issue, so the first thing I had to
+        test was if it would actually work in a WebGL Environment.
+        After testing it in different situations I found out that it
+        worked if hosted on a webserver, but opening the file directly
+        never worked and strangely enough Firefox on Ubuntu had its
+        difficulties too, but not on Windows.
+        <br>
+        Next I had to implement a way to inspect the vehicle from
+        multiple angles and positions. One option was to create a first
+        person controller, where I could virtually walk around the
+        vehicle, like in a game. This would've offered an easy VR
+        adaption, but as most households don't actually have a
+        VR-Headset I decided to use more commonly used browser controls:
+        Spinning the vehicle with your mouse and zooming with your
+        scrolling wheel.
+        <br>
+        After that was done I needed to look for a way to enable my
+        mouse again, leave the "spin mode" and use it to hover over
+        any tools. I gave every tool a mesh collider, which basically
+        tells Unity how something is shaped based on its mesh.
+        Unity provides a simple OnMouseOver-Method, so getting a
+        detection as to when my mouse hovers a tool was easy. I only
+        needed to create a UI with dynamic text. This was difficult
+        at first, because the text was either behind the background,
+        behind the vehicle, blurry or badly positioned, depending on
+        the screen size. I solved all of this by putting it as close
+        to the camera as possible. Exported it to WebGL and everything
+        worked as intended.
+        <br>
+        Last step was to create a Website where I could actually
+        embed the whole project. The most time-consuming part was to
+        actually design it first, because this time design actually
+        mattered and I haven't done that too often.
+      </p>
+      <h2>Previous Skillset</h2>
+
+      <p>
+        Previously I learned how to program with java and C++, and the
+        basics about CSS and HTML in school. At home I taught myself a
+        lot more about Java, C#, Python and SQL. I worked a lot with
+        Android Studio and even published an App, and this is where I
+        taught I knew something about managing projects, but more to
+        that later.
+      </p>
+
+    <h2>What I've learned</h2>
+
+    <p>
+      Prior to this project I had no experience with 3D-Modelling nor
+      Game Development. Even though it took me a long time to grasp
+      the concepts of working with Autodesk Fusion, it was fun and
+      refreshing because I could see my own progress. Looking at my
+      vehicle I'm fully aware of how big the room for improvement is,
+      but for my first time modelling something like this I'm
+      satisfied. Learning Unity, or rather how to work with Unity
+      was rather easy, as there's plenty of tutorials for that on
+      Youtube, and my "Game" was really simple. But the one thing
+      where I'm pretty sure I learned the most is Project Management.
+      After reading the email carefully, I stumbled upon
+      "Version Control" and had to look it up. It's my first time
+      actually working with GitHub, so not everything is really clear
+      to me, and I probably did some things the wrong way, but most
+      of it made sense as to why I should use it and I wish I had
+      known sooner about this. Now I know how to work on a Project
+      with multiple people working on different features, how version
+      control ensures that a rollback is the solution to a broken
+      feature instead of CTRL+Z, it all makes a bit more sense now.
+      In hindsight I feel really uneducated on how I've handled
+      things before knowing about GitHub, but I'm glad I know about it now.
+    </p>
+
+    <h2>The best solution?</h2>
+
+    <p>
+      Of course this isn't the best solution, but I think the
+      approach is good and makes it actually possible to work on
+      current issues. With more time and patience, I could've
+      completed the vehicle, with all of its moving drawers, and
+      give it a better design. Unity makes it possible to actually
+      open things like drawers, or other mechanical parts to showcase
+      the vehicle. It also makes it possible to add more vehicles in
+      the same way, and to create a better environment instead of a
+      black background. Another advantage that comes with unity is
+      the ways I can improve the whole experience, not just the
+      content. Instead of only being able to spin the vehicle with
+      your mouse, I could move the point where the camera pivots
+      around. Highlighting tools and creating a quiz should be
+      possible too, but it'd take me more time, so I decided against
+      doing this for now.
+
+    </p>
+
+    <h2>Known issues</h2>
+    <p>
+      <ul>
+        <li>Missing texture on the side of the vehicle</li>
+        <li>Translations and descriptions may be inaccurate</li>
+        <li>Controls aren't very user-friendly</li>
+        <li>Vehicle has only one shutter to inspect</li>
+      </ul>
+    </p>
+        </div>
+
+
+  </body>
+</html>
